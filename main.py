@@ -70,12 +70,13 @@ def buscar_libro():
                     print(libro)
         case _:
             print("Error no ha ingresado un numero entre 1 y 2")
-def añadir_usuario():
+def anadir_usuario():
     tab = []
     tab.append(input("Ingresa el nombre completo del usuario: "))
     tab.append(int(input("Ingresar el codigo del usuario: ")))
+    print(tab)
     usuarios.append(tab)
-    return tab
+    
 
             
                 
