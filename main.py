@@ -1,9 +1,10 @@
+usuarios = [] 
 def anadir_libro():
     tab = []
-    tab.append(input("Ingresar el nombre del libro"))
-    tab.append(input("Ingresar el nombre del autor"))
-    tab.append(int(input("Ingresar la fecha de publicacion")))
-    tab.append(int(input("Ingresar el  numero de libros disponible")))
+    tab.append(input("Ingresar el nombre del libro: "))
+    tab.append(input("Ingresar el nombre del autor: "))
+    tab.append(int(input("Ingresar la fecha de publicacion: ")))
+    tab.append(int(input("Ingresar el  numero de libros disponible: ")))
     print(tab)
     libros.append(tab)
 
@@ -30,7 +31,7 @@ def editar_libro():
                         print("Error ingrese un numero entre 1 y 4 ")
             break   
     else : 
-        print("Livre no encontrado en la lista")
+        print("Libro no encontrado en la lista")
 
 def borrar_libro():
     nombre = input("Ingresar el nombre del libro que quieres borrar")
@@ -64,12 +65,18 @@ def buscar_libro():
             if numlibrosautor == 0:
                 print("Autor no encontrado en la lista ")
             else:
-                print(f"Autor encontrado, tenemos {numlibrosautor} de el que son")
+                print(f"Autor encontrado, tenemos {numlibrosautor} libros de el los cuales son: ")
                 for libro in librosautor:
                     print(libro)
         case _:
             print("Error no ha ingresado un numero entre 1 y 2")
-            
+def añadir_usuario():
+    tab = []
+    tab.append(input("Ingresa el nombre completo del usuario: "))
+    tab.append(int(input("Ingresar el codigo del usuario: ")))
+    usuarios.append(tab)
+    return tab
+
             
                 
                     
