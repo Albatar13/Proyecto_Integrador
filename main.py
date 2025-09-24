@@ -70,6 +70,19 @@ def buscar_libro():
                     print(libro)
         case _:
             print("Error no ha ingresado un numero entre 1 y 2")
+
+def mostrar_libros():
+     num = int(input("Que quieres ver : 1 = Solo los libros disponibles, 2 : Todos los libros "))
+     if num == 1:
+         for libro in libros:
+             if libro[3] > 0:
+                 print(libro)
+     elif num == 2:
+        for libro in libros:
+            print(libro)
+     else:
+        print("Error no ha ingresado un numero entre 1 y 2")
+         
 def anadir_usuario():
     tab = []
     tab.append(input("Ingresa el nombre completo del usuario: "))
