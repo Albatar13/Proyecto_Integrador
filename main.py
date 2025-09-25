@@ -93,9 +93,9 @@ def anadir_usuario():
 
 
 def editar_usuario():
-    nombre = input("Ingresar el nombre del usuario que quieres editar: ")
+    codigo = input("Ingresar el codigo del usuario que quieres editar: ")
     for usuario in usuarios:
-        if nombre.lower() == usuario[0].lower():
+        if codigo == usuario[1]:
             while True: 
                 num = int(input("Que quieres cambiar : 1 = Cambiar nombre / 2 = Cambiar el codigo de usuario  / 3 = Cambiar el correo: "))
                 match num :
@@ -106,7 +106,7 @@ def editar_usuario():
                         usuario[1] = int(input("Ingresar el nuevo codigo para el usuario: "))
                         break
                     case 3:
-                        usuario[2] = input("Ingresar la nuevo correo del usuario: ")
+                        usuario[2] = input("Ingresar el nuevo correo del usuario: ")
                         break
                     case _:
                         print("Error ingrese un numero entre 1 y 3 ")
