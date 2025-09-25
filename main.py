@@ -87,8 +87,33 @@ def anadir_usuario():
     tab = []
     tab.append(input("Ingresa el nombre completo del usuario: "))
     tab.append(int(input("Ingresar el codigo del usuario: ")))
+    tab.append(input("Ingresa el correo del usuario: "))
     print(tab)
     usuarios.append(tab)
+
+
+def editar_usuario():
+    nombre = input("Ingresar el nombre del usuario que quieres editar: ")
+    for usuario in usuarios:
+        if nombre.lower() == usuario[0].lower():
+            while True: 
+                num = int(input("Que quieres cambiar : 1 = Cambiar nombre / 2 = Cambiar el codigo de usuario  / 3 = Cambiar el correo: "))
+                match num :
+                    case 1:
+                        usuario[0] = input("Ingresar el nuevo nombre para el usuario: ")
+                        break
+                    case 2:
+                        usuario[1] = int(input("Ingresar el nuevo codigo para el usuario: "))
+                        break
+                    case 3:
+                        usuario[2] = input("Ingresar la nuevo correo del usuario: ")
+                        break
+                    case _:
+                        print("Error ingrese un numero entre 1 y 3 ")
+            break   
+    else : 
+        print("Usuario no encontrado")
+
     
 
             
