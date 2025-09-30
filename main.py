@@ -114,6 +114,16 @@ def editar_usuario():
     else : 
         print("Usuario no encontrado")
 
+def borrar_usuario():
+    codigo = input("Ingresar el codigo del usuario que quieres borrar: ")
+    for usuario in usuarios:
+        if codigo == usuario[1]:
+            usuarios.remove(usuario)
+            print(f"El usuario: {usuario} se acaba de borrar ")
+            break
+    else:
+        print("Usuario no encontrado ")
+
     
 
             
