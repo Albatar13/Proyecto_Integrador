@@ -124,7 +124,7 @@ def borrar_usuario():
     else:
         print("Usuario no encontrado ")
 
-    def buscar_usuario():
+def buscar_usuario():
         codigo = int(input("Ingresar el codigo del usuario que deseas buscar: "))
         for usuario in usuarios:
             if codigo == usuario[1]:
