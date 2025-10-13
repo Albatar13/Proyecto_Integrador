@@ -1,4 +1,6 @@
-usuarios = [] 
+usuarios = []
+libros = []
+prestos = {}
 def anadir_libro():
     tab = []
     tab.append(input("Ingresar el nombre del libro: "))
@@ -51,9 +53,10 @@ def buscar_libro():
                 if nombre.lower() == libro[0].lower():
                     print("Libro encontrado sus informaciones son :")
                     print(libro)
-                    break
+                    return True , libro
             else:
                 print("Libro no encontrado en la lista ")
+                return False
         case 2:
             autor = input("Ingresar el nombre del autor que quieres buscar")
             numlibrosautor = 0
@@ -90,6 +93,7 @@ def anadir_usuario():
     tab.append(input("Ingresa el correo del usuario: "))
     print(tab)
     usuarios.append(tab)
+    prestos[tab[1]] = []
 
 
 def editar_usuario():
@@ -129,12 +133,34 @@ def buscar_usuario():
         for usuario in usuarios:
             if codigo == usuario[1]:
                 print(f"Usuario encontrado: {usuario}")
-                break
+                return True, usuario
+        else:
+            print("Usuario no encontrado en la lista ")
+            return False
+
+def mostrar_usuarios():
+    for usuario in usuarios:
+        print(usuario)
+
+def anadir_prestos():
+    bool1 , user = buscar_usuario()
+    if bool1:
+        print("Usa la funcion buscar_libro con la opcion 1 !! ")
+        bool2, book = buscar_libro()
+        if bool2:           
+            if book[3] >0 :
+                if len(prestos[user[1]]) <= 3:
+                    prestos[user[1]].append(book[0])
+                    print(f"Presto anadido : el usario {user} tiene el libro {libro}")
+                    book[3] -= 1
+                    print(libros)
                 else:
-                    print("Usuario no encontrado en la lista ")
-   
-       
+                    print(" El usuario ya tiene 4 libros, no puede pedir mas ahora ")
+            else:
+                print(" No hay mas de ese libro")
+
 
             
                 
                     
+
