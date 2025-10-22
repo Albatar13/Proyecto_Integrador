@@ -7,14 +7,15 @@ def anadir_libro():
     tab.append(input("Ingresar el nombre del autor: "))
     tab.append(int(input("Ingresar la fecha de publicacion: ")))
     tab.append(int(input("Ingresar el  numero de libros disponible: ")))
-    print(tab)
     libros.append(tab)
+    return tab
 
 def editar_libro():
     nombre = input("Ingresar el nombre del libro que quieres editar")
     for libro in libros:
         if nombre.lower() == libro[0].lower():
-            while True: 
+            print(libro)
+            while True:
                 num = int(input("Que quieres cambiar : 1 = Cambiar nombre / 2 = Cambiar autor / 3 = Cambiar fecha publicacion / 4= Cambiar numero disponible"))
                 match num :
                     case 1:
@@ -40,6 +41,7 @@ def borrar_libro():
     for libro in libros:
         if nombre.lower() == libro[0].lower():
             libros.remove(libro)
+            print(f" El libro fue borrado con exito")
             break
     else:
         print("Libro no encontrado en la lista ")
@@ -91,13 +93,14 @@ def anadir_usuario():
     tab.append(input("Ingresa el nombre completo del usuario: "))
     tab.append(int(input("Ingresar el codigo del usuario: ")))
     tab.append(input("Ingresa el correo del usuario: "))
-    print(tab)
     usuarios.append(tab)
     prestos[tab[1]] = []
+    return tab
+
 
 
 def editar_usuario():
-    codigo = input("Ingresar el codigo del usuario que quieres editar: ")
+    codigo = int(input("Ingresar el codigo del usuario que quieres editar: "))
     for usuario in usuarios:
         if codigo == usuario[1]:
             while True: 
@@ -119,14 +122,14 @@ def editar_usuario():
         print("Usuario no encontrado")
 
 def borrar_usuario():
-    codigo = input("Ingresar el codigo del usuario que quieres borrar: ")
+    codigo = int(input("Ingresar el codigo del usuario que quieres borrar: "))
     for usuario in usuarios:
         if codigo == usuario[1]:
             usuarios.remove(usuario)
             print(f"El usuario: {usuario} se acaba de borrar ")
             break
     else:
-        print("Usuario no encontrado ")
+        print("Usuario no encontrado en la lista")
 
 def buscar_usuario():
         codigo = int(input("Ingresar el codigo del usuario que deseas buscar: "))
@@ -151,16 +154,70 @@ def anadir_prestos():
             if book[3] >0 :
                 if len(prestos[user[1]]) <= 3:
                     prestos[user[1]].append(book[0])
-                    print(f"Presto anadido : el usario {user} tiene el libro {libro}")
+                    print(f"Presto anadido : el usario {user} tiene el libro {book}")
                     book[3] -= 1
-                    print(libros)
                 else:
                     print(" El usuario ya tiene 4 libros, no puede pedir mas ahora ")
             else:
                 print(" No hay mas de ese libro")
+    else:
+        print("Ese usuario no es registrado")
 
 
-            
+def devolver_libro():
+    pass
                 
                     
-
+while True:
+    print("-- Menu Biblioteca --")
+    print("\n")
+    print("1 : Anadir un libro")
+    print("2 : Editar un libro")
+    print("3 : Borrar un libro")
+    print("4 : Buscar un libro")
+    print("5 : Mostrar los libros")
+    print("6 : Anadir un usuario")
+    print("7 : Editar un usuario")
+    print("8 : Borrar un usuario")
+    print("9 : Buscar un usuario")
+    print("10 : Mostrar los usuarios")
+    print("11 : Anadir un presto")
+    print("12 : Devolver un libro")
+    print("13 : Salir del menu")
+    opcion = int(input("Ingresa su opcion "))
+    
+    match opcion :
+        case 1:
+            libro1 = anadir_libro()
+            print(f" El libro {libro1} fue anadido con exito")
+        case 2:
+            editar_libro()
+        case 3:
+            borrar_libro()
+        case 4:
+            buscar_libro()
+        case 5:
+            mostrar_libros()
+        case 6:
+            usuario1 = anadir_usuario()
+            print(f" El usuario {usuario1} fue anadido con exito")
+        case 7:
+            editar_usuario()
+        case 8:
+            borrar_usuario()
+        case 9:
+            buscar_usuario()
+        case 10:
+            mostrar_usuarios()
+        case 11:
+            anadir_prestos()
+        case 12:
+            devolver_libro()
+        case 13:
+            print("Ciao, Hasta luego")
+            break
+            
+            
+            
+            
+            
