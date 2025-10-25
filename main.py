@@ -233,7 +233,7 @@ while True:
         case 10:
             mostrar_usuarios()
         case 11:
-            anadir_prestos()
+            anadir_presto()
         case 12:
             devolver_libro()
         case 13:
