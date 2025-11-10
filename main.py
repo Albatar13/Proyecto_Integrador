@@ -1,19 +1,27 @@
+# Lista para guardar la información de los usuarios (nombre, codigo , correo)
 usuarios = []
+
+# Lista para guardar la información de los libros (nombre libro, nombre autor, fecha de publicacion, numero de libros disponible)
 libros = []
+
+# Diccionario para registrar los préstamos: clave = código del usuario, valor = lista de libros prestados
 prestos = {}
+
+# Función para añadir un nuevo libro 
 def anadir_libro():
     tab = []
     tab.append(input("Ingresar el nombre del libro: "))
     tab.append(input("Ingresar el nombre del autor: "))
     tab.append(int(input("Ingresar la fecha de publicacion: ")))
-    tab.append(int(input("Ingresar el  numero de libros disponible: ")))
+    tab.append(int(input("Ingresar el numero de libros disponible: ")))
     libros.append(tab)
     return tab
 
+# Función para editar un libro 
 def editar_libro():
     nombre = input("Ingresar el nombre del libro que quieres editar")
     for libro in libros:
-        if nombre.lower() == libro[0].lower():
+        if nombre.lower() == libro[0].lower(): # Aqui buscamos el libro con su nombre
             print(libro)
             while True:
                 num = int(input("Que quieres cambiar? : 1 = Cambiar nombre / 2 = Cambiar autor / 3 = Cambiar fecha publicacion / 4= Cambiar numero disponible"))
@@ -35,24 +43,26 @@ def editar_libro():
             break   
     else : 
         print("Libro no encontrado en la lista")
-
+        
+# Función para borrar un libro
 def borrar_libro():
     nombre = input("Ingresar el nombre del libro que quieres borrar")
     for libro in libros:
-        if nombre.lower() == libro[0].lower():
+        if nombre.lower() == libro[0].lower():  # Aqui buscamos el libro con su nombre
             libros.remove(libro)
             print(f" El libro fue borrado con exito")
             break
     else:
         print("Libro no encontrado en la lista ")
         
+# Función para buscar un libro con su nombre o el nombre del autor        
 def buscar_libro():
     num = int(input("Como quieres buscar?: ingresa 1: con el nombre del libro : ingresa 2: con el nombre del autor:  "))
     match num:
         case 1:
             nombre = input("Ingresar el nombre del libro que quieres buscar")
             for libro in libros:
-                if nombre.lower() == libro[0].lower():
+                if nombre.lower() == libro[0].lower(): # Aqui buscamos el libro con su nombre
                     print("Libro encontrado sus informaciones son :")
                     print(libro)
                     return True , libro
@@ -62,9 +72,9 @@ def buscar_libro():
         case 2:
             autor = input("Ingresar el nombre del autor que quieres buscar")
             numlibrosautor = 0
-            librosautor = []
+            librosautor = [] #Lista para guardar todo los libros del autor
             for libro in libros:
-                if autor.lower() == libro[1].lower():
+                if autor.lower() == libro[1].lower(): # Aqui buscamos todos los libros del autor
                     librosautor.append(libro)
                     numlibrosautor +=1
             if numlibrosautor == 0:
@@ -75,19 +85,21 @@ def buscar_libro():
                     print(libro)
         case _:
             print("Error no ha ingresado un numero entre 1 y 2")
-
+            
+# Función para mostrar los libros (solo disponibles o todos) 
 def mostrar_libros():
      num = int(input("Deseas ver  1 : Solo los libros disponibles, 2 : Todos los libros "))
      if num == 1:
          for libro in libros:
-             if libro[3] > 0:
+             if libro[3] > 0: # si el numero de libros disponible es mayor a uno el libro esta disponible
                  print(libro)
      elif num == 2:
         for libro in libros:
             print(libro)
      else:
         print("Error no ha ingresado un numero entre 1 y 2")
-         
+
+# Función para añadir un nuevo usuario
 def anadir_usuario():
     tab = []
     tab.append(input("Ingresa el nombre completo del usuario: "))
@@ -98,7 +110,7 @@ def anadir_usuario():
     return tab
 
 
-
+# Función para editar un usuario
 def editar_usuario():
     codigo = int(input("Ingresar el codigo del usuario que quieres editar: "))
     for usuario in usuarios:
@@ -121,6 +133,7 @@ def editar_usuario():
     else : 
         print("Usuario no encontrado")
 
+# Función para borrar un usuario con su codigo
 def borrar_usuario():
     codigo = int(input("Ingresar el codigo del usuario que quieres borrar: "))
     for usuario in usuarios:
@@ -131,6 +144,7 @@ def borrar_usuario():
     else:
         print("Usuario no encontrado en la lista")
 
+# Función para buscar un usuario con su codigo
 def buscar_usuario():
         codigo = int(input("Ingresar el codigo del usuario que deseas buscar: "))
         for usuario in usuarios:
@@ -140,22 +154,24 @@ def buscar_usuario():
         else:
             print("Usuario no encontrado en la lista ")
             return False
-
+            
+# Función para mostrar todos los usuarios
 def mostrar_usuarios():
     for usuario in usuarios:
         print(usuario)
-
+        
+# Función para añadir un nuevo presto
 def anadir_presto():
-    bool1 , user = buscar_usuario()
+    bool1 , user = buscar_usuario() #En primer lugar buscamos el usuario
     if bool1:
-        print("Usa la funcion buscar_libro con la opcion 1 !! ")
-        bool2, book = buscar_libro()
+        print("Usa la funcion buscar_libro con la opcion 1 !! ") 
+        bool2, book = buscar_libro() # Despues buscamos el libro
         if bool2:           
-            if book[3] >0 :
-                if len(prestos[user[1]]) <= 3:
+            if book[3] >0 : #El libro debe ser disponible para permitir el presto
+                if len(prestos[user[1]]) <= 3: #Un usuario no puede pedir mas de 4 libros 
                     prestos[user[1]].append(book[0])
                     print(f"Presto anadido : el usario {user} tiene el libro {book}")
-                    book[3] -= 1
+                    book[3] -= 1 # Cambiamos el numero de libros disponibles 
                 else:
                     print(" El usuario ya tiene 4 libros, no puede pedir mas ahora ")
             else:
@@ -163,7 +179,7 @@ def anadir_presto():
     else:
         print("Ese usuario no es registrado")
 
-
+# Función para devolver un libro
 def devolver_libro():
     codigo = int(input("Ingresar el codigo del usuario que va a devolver un libro: "))
     if codigo in prestos:
